@@ -1,0 +1,11 @@
+Flask
+gunicorn
+pandas
+numpy
+openpyxl
+faiss-cpu
+langchain
+langchain-core
+langchain-community
+langchain-huggingface
+sentence-transformers
