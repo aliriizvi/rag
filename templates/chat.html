@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ask Questions</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .chat-box {
+            border: 1px solid #ddd;
+            width: 450px;
+            padding: 20px;
+        }
+        .answer {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f3f3f3;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Ask a Question</h2>
+
+<div class="chat-box">
+    <input id="query" type="text" placeholder="Enter your question" style="width: 100%; padding: 8px;">
+    <br><br>
+    <button onclick="ask()">Submit</button>
+
+    <div id="response" class="answer" style="display:none;"></div>
+</div>
+
+<script>
+function ask() {
+    let q = document.getElementById("query").value;
+
+    let formData = new FormData();
+    formData.append("query", q);
+
+    fetch("/ask", { method: "POST", body: formData })
+    .then(res => res.json())
+    .then(data => {
+        let box = document.getElementById("response");
+        box.style.display = "block";
+        box.innerHTML = "<b>Answer:</b><br>" + data.answer;
+    });
+}
+</script>
+
+</body>
+</html>

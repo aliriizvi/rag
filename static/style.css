@@ -1,0 +1,10 @@
+body { font-family: Arial; margin:20px; background:#f0f2f5; }
+header { background:#4CAF50; color:white; padding:10px;}
+nav a { color:white; margin:0 10px; text-decoration:none;}
+h2 { color:#333; }
+input, button { padding:10px; margin:5px 0; }
+#chatbox { border:1px solid #ccc; padding:10px; height:300px; overflow-y:scroll; background:white; }
+.msg { color:green; }
+body { font-family: 'Segoe UI', sans-serif; }
+#chatbox p { margin: 0.2rem 0; }
+hr { margin: 0.2rem 0; }

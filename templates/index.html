@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Upload Excel File</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+</form>
+{% if message %}
+<p class="msg">{{ message }}</p>
+{% endif %}
+
+<h2>Chat</h2>
+<div id="chatbox">
+    <!-- chat history -->
+</div>
+<input type="text" id="query" placeholder="Ask something...">
+<button onclick="sendQuery()">Send</button>
+
+<script>
+async function sendQuery(){
+    let query = document.getElementById("query").value;
+    let res = await fetch("/ask", {
+        method: "POST",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: "query="+encodeURIComponent(query)
+    });
+    let data = await res.json();
+    let box = document.getElementById("chatbox");
+    box.innerHTML = "";
+    data.history.forEach(h=>{
+        box.innerHTML += "<p><b>You:</b> "+h.query+"</p>";
+        box.innerHTML += "<p><b>Bot:</b> "+h.answer+"</p>";
+    });
+    document.getElementById("query").value="";
+}
+</script>
+{% endblock %}
